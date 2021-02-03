@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core';
-import { markeStyles } from '@material-ui/styles';
 
 const styleBuying = makeStyles({
     main: {

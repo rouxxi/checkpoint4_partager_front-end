@@ -7,11 +7,15 @@ import Filters from '../../components/common/Filters/Filters';
 function Buying() {
 	const [items, setItems] = React.useState([]);
 	const [filterName, setFilterName] = React.useState('');
-
+	const [order, setOrder] = React.useState('');
 	const classes = styleBuying();
 
 	function handleFilters(e) {
 		setFilterName(e.target.value);
+	}
+
+	function handleChangeOrder(e) {
+		setOrder(e.target.value);
 	}
 	useEffect(() => {
 		axios.get(`${process.env.REACT_APP_URL_BACK}items/`).then((res) => {
@@ -21,7 +25,11 @@ function Buying() {
 	}, []);
 	return (
 		<div className={classes.main}>
-			<Filters value={filterName} onChange={handleFilters} />
+			<Filters
+				value={filterName}
+				onChangeOrder={handleChangeOrder}
+				onChangeSearch={handleFilters}
+			/>
 			<div className={classes.thumbnails}>
 				{items &&
 					items
@@ -32,6 +40,15 @@ function Buying() {
 									.includes(filterName.toLowerCase());
 							} else {
 								return true;
+							}
+						})
+						.sort((a, b) => {
+							if (order === 'increasing') {
+								return a.price - b.price;
+							} else if (order === 'descending') {
+								return b.price - a.price;
+							} else {
+								return;
 							}
 						})
 						.map((item) => {
