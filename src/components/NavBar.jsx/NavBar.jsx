@@ -35,7 +35,7 @@ function NavBar() {
 				<Link to='/basket'>
 					<li>
 						<IconButton aria-label='cart'>
-							<StyledBadge badgeContent={4} color='secondary'>
+							<StyledBadge badgeContent={1} color='secondary'>
 								<ShoppingCartIcon className={classes.kart} />
 							</StyledBadge>
 						</IconButton>
