@@ -6,12 +6,15 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
+import axios from 'axios';
 
 function Selling() {
 	const [label, setLabel] = React.useState('');
 	const [description, setDescription] = React.useState('');
 	const [linkImage, setLinkImage] = React.useState('');
 	const [price, setPrice] = React.useState('');
+	const [user, setUser] = React.useState(1);
+	const [error, setError] = React.useState('');
 	const classes = styleSelling();
 
 	function handleChangeLabel(e) {
@@ -25,6 +28,21 @@ function Selling() {
 	}
 	function handleChangeLinkImage(e) {
 		setLinkImage(e.target.value);
+	}
+	function handleSubmit() {
+		axios
+			.post(`${process.env.REACT_APP_URL_BACK}items/`, {
+				label: label,
+				price: price,
+				description: description,
+				linkImage: linkImage,
+				user: user,
+			})
+			.then((res) => {
+				console.log(res);
+				console.log(process.env.REACT_APP_URL_BACK);
+				setError(res);
+			});
 	}
 
 	return (
@@ -62,6 +80,7 @@ function Selling() {
 				{/* <input type='file' /> */}
 
 				<Button
+					onClick={handleSubmit}
 					variant='contained'
 					color='primary'
 					className={classes.button}
