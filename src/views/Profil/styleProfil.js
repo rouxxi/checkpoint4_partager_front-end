@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-const styleSubscribe = makeStyles({
+const styleProfil = makeStyles({
     main: {
         margin: '2rem 0 2rem 0',
     },
@@ -18,4 +18,4 @@ const styleSubscribe = makeStyles({
     },
 });
 
-export default styleSubscribe;
+export default styleProfil;

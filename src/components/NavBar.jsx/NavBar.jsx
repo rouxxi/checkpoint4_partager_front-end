@@ -5,6 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
+import { BasketContext } from '../../contexts/BasketContext/BasketContext';
+import { UserContext } from '../../contexts/userContext/userContext';
 
 const StyledBadge = withStyles((theme) => ({
 	badge: {
@@ -16,7 +18,12 @@ const StyledBadge = withStyles((theme) => ({
 }))(Badge);
 
 function NavBar() {
+	const { userInfo } = React.useContext(UserContext);
+
+	const { basket, setBasket } = React.useContext(BasketContext);
+
 	const classes = styleNavBar();
+
 	return (
 		<div className={classes.main}>
 			<ul className={classes.Ul}>
@@ -34,12 +41,25 @@ function NavBar() {
 				</Link>
 				<Link to='/basket'>
 					<li>
-						<IconButton aria-label='cart'>
-							<StyledBadge badgeContent={1} color='secondary'>
-								<ShoppingCartIcon className={classes.kart} />
-							</StyledBadge>
+						<IconButton aria-label='cart' className={classes.buttonBasket}>
+							{basket.status ? (
+								<StyledBadge
+									badgeContent={() => {
+										return JSON.stringify(localStorage.getItem('basket'))
+											.length;
+									}}
+									color='secondary'
+								>
+									<ShoppingCartIcon className={classes.kart} />
+								</StyledBadge>
+							) : (
+								<StyledBadge color='secondary'>
+									<ShoppingCartIcon className={classes.kart} />
+								</StyledBadge>
+							)}
 						</IconButton>
 					</li>
+					<li>{`${userInfo.money} €`}</li>
 				</Link>
 			</ul>
 		</div>

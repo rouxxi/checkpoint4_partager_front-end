@@ -25,5 +25,8 @@ const styleNavBar = makeStyles({
     kart: {
         color: 'rgba(255,255,255,0.8)',
     },
+    buttonBasket: {
+        padding: 0,
+    },
 });
 export default styleNavBar;
