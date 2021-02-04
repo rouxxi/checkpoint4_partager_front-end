@@ -5,7 +5,7 @@ export const BasketContext = createContext(null);
 function BasketContextProvider({ children }) {
 	const [basket, setBasket] = React.useState({
 		status: false,
-		items: {},
+		items: [''],
 	});
 
 	return (

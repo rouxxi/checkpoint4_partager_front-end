@@ -5,6 +5,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { UserContext } from '../../contexts/userContext/userContext';
 import styleProfil from './styleProfil';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Profil() {
 	const { userInfo, setUserInfo } = React.useContext(UserContext);
@@ -13,7 +14,7 @@ function Profil() {
 	const [nickName, setNickName] = React.useState('');
 	const [email, setEmail] = React.useState('');
 	const [edit, setEdit] = React.useState(true);
-
+	const history = useHistory();
 	const classes = styleProfil();
 
 	const handleEmail = (e) => {
@@ -33,7 +34,11 @@ function Profil() {
 	const handleDisable = () => {
 		setEdit(!edit);
 	};
-
+	const handleLogout = () => {
+		localStorage.removeItem('token');
+		localStorage.removeItem('id');
+		history.push('/');
+	};
 	const handleSubmit = () => {
 		const { idUser } = userInfo;
 
@@ -115,6 +120,14 @@ function Profil() {
 					</Button>
 				)}
 			</form>
+			<Button
+				variant='contained'
+				color='secondary'
+				className={classes.button}
+				onClick={handleLogout}
+			>
+				Deconnecxion
+			</Button>
 		</div>
 	);
 }

@@ -20,7 +20,7 @@ const StyledBadge = withStyles((theme) => ({
 function NavBar() {
 	const { userInfo } = React.useContext(UserContext);
 
-	const { basket, setBasket } = React.useContext(BasketContext);
+	const { basket } = React.useContext(BasketContext);
 
 	const classes = styleNavBar();
 
@@ -44,10 +44,7 @@ function NavBar() {
 						<IconButton aria-label='cart' className={classes.buttonBasket}>
 							{basket.status ? (
 								<StyledBadge
-									badgeContent={() => {
-										return JSON.stringify(localStorage.getItem('basket'))
-											.length;
-									}}
+									badgeContent={basket.items.length - 1}
 									color='secondary'
 								>
 									<ShoppingCartIcon className={classes.kart} />

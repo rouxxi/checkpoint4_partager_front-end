@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import stylethumbnail from './stylethumbnail';
 
 function Thumbnail(props) {
-	const { image, price, name, description } = props;
+	const { image, price, name, description, onClick } = props;
 	const classes = stylethumbnail();
 	return (
 		<Card className={classes.main}>
@@ -34,7 +34,7 @@ function Thumbnail(props) {
 				</CardContent>
 			</CardActionArea>
 			<CardActions className={classes.action}>
-				<Button size='small' color='primary'>
+				<Button size='small' color='primary' onClick={onClick}>
 					Ajouter au caddy
 				</Button>
 			</CardActions>

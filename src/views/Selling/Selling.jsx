@@ -7,8 +7,10 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios';
+import { UserContext } from '../../contexts/userContext/userContext';
 
 function Selling() {
+	const { userInfo, setUserInfo } = React.useContext(UserContext);
 	const [label, setLabel] = React.useState('');
 	const [description, setDescription] = React.useState('');
 	const [linkImage, setLinkImage] = React.useState('');
@@ -30,13 +32,14 @@ function Selling() {
 		setLinkImage(e.target.value);
 	}
 	function handleSubmit() {
+		const { idUser } = userInfo;
 		axios
 			.post(`${process.env.REACT_APP_URL_BACK}items/`, {
 				label: label,
 				price: price,
 				description: description,
 				linkImage: linkImage,
-				user: user,
+				user: idUser,
 			})
 			.then((res) => {
 				console.log(res);
