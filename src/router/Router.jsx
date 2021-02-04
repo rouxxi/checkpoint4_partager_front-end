@@ -4,7 +4,6 @@ import NavBar from '../components/NavBar.jsx/NavBar';
 import Basket from '../views/Basket/Basket';
 import Buying from '../views/Buying/Buying';
 import Connection from '../views/Connection/Connection';
-import Home from '../views/Home/Home';
 import Orders from '../views/Orders/Orders';
 import Selling from '../views/Selling/Selling';
 import Subscribe from '../views/Subscribe/Subscribe';
@@ -14,14 +13,10 @@ function Router() {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route exact path='/'>
-					<NavBar />
-					<Home />
-				</Route>
 				<Route exact path='/subscribe'>
 					<Subscribe />
 				</Route>
-				<Route exact path='/connection'>
+				<Route exact path='/'>
 					<Connection />
 				</Route>
 				<Route exact path='/orders'>
