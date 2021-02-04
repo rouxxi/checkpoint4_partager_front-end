@@ -8,7 +8,7 @@ const styleHeader = makeStyles({
         backgroundColor: 'yellow',
         width: '100%',
         height: '120px',
-        fontSize: '40px',
+        fontSize: '24px',
         fontWeight: 'bolder',
     },
 });
