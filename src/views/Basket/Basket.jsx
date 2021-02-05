@@ -16,7 +16,7 @@ import { UserContext } from '../../contexts/userContext/userContext';
 
 function Basket() {
 	const { basket, setBasket } = React.useContext(BasketContext);
-	const { userInfo } = React.useContext(UserContext);
+	const { userInfo, setUserInfo } = React.useContext(UserContext);
 	const [enoughtMoney, setEnoughtMoney] = React.useState(false);
 	const [bought, setBought] = React.useState(false);
 	const classes = styleBasket();
@@ -34,6 +34,10 @@ function Basket() {
 					})
 					.then((res) => {
 						setBought(true);
+						setUserInfo({
+							...userInfo,
+							money: userInfo.money - basket.totalPrice,
+						});
 						setBasket({
 							status: false,
 							items: [''],
@@ -60,7 +64,6 @@ function Basket() {
 							<TableCell>Nom</TableCell>
 							<TableCell align='left'>Vendeur</TableCell>
 							<TableCell align='left'>Prix</TableCell>
-							<TableCell align='left'>Option</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
