@@ -22,7 +22,6 @@ function Buying() {
 
 	useEffect(() => {
 		axios.get(`${process.env.REACT_APP_URL_BACK}items/`).then((res) => {
-			console.log(res);
 			setItems(res.data);
 		});
 	}, []);
@@ -66,7 +65,6 @@ function Buying() {
 									description={item.description}
 									image={item.picture}
 									onClick={() => {
-										console.log(basket.items);
 										setBasket({
 											status: true,
 											items: [

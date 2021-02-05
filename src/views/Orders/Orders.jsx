@@ -14,15 +14,15 @@ import styleOrders from './styleOrders';
 
 function Orders() {
 	const { userInfo } = React.useContext(UserContext);
+	const { idUser } = userInfo;
 	const [orders, setOrders] = React.useState([]);
 	const classes = styleOrders();
 
 	useEffect(() => {
-		const { idUser } = userInfo;
 		axios
 			.get(`${process.env.REACT_APP_URL_BACK}items/${idUser}/bought/`)
 			.then((res) => setOrders(res.data));
-	}, []);
+	}, [idUser]);
 
 	return (
 		<div className={classes.main}>
