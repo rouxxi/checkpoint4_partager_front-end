@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-
+import ChildrenPropTypes from '../../PropTypes/ChildrenPropTypes';
 export const UserContext = createContext({});
 
 function UserContextProvider({ children }) {
@@ -18,5 +18,7 @@ function UserContextProvider({ children }) {
 		</UserContext.Provider>
 	);
 }
+
+UserContextProvider.protoTypes = ChildrenPropTypes;
 
 export default UserContextProvider;
