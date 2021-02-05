@@ -4,6 +4,7 @@ import styleSubscribe from './styleSubscribe';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import userSubscribe from '../../service/userSubscribe';
+import { useHistory } from 'react-router-dom';
 
 function Subscribe() {
 	const [firstName, setFirstName] = React.useState('');
@@ -12,7 +13,9 @@ function Subscribe() {
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');
 	const [verifyPassword, setVerifyPassword] = React.useState('');
+	const [verifField, setVerifField] = React.useState(false);
 	const classes = styleSubscribe();
+	const history = useHistory();
 
 	const handleEmail = (e) => {
 		setEmail(e.target.value);
@@ -34,13 +37,28 @@ function Subscribe() {
 	};
 
 	const handleSubmit = () => {
-		userSubscribe({
-			firstName: firstName,
-			lastName: lastName,
-			nickName: nickName,
-			email: email,
-			password: password,
-		});
+		if (
+			firstName.length < 1 ||
+			lastName.length < 1 ||
+			nickName.length < 1 ||
+			email.length < 1 ||
+			password.length < 1 ||
+			verifyPassword.length < 1
+		) {
+			setVerifField(true);
+		} else {
+			setVerifField(false);
+			userSubscribe(
+				{
+					firstName: firstName,
+					lastName: lastName,
+					nickName: nickName,
+					email: email,
+					password: password,
+				},
+				history
+			);
+		}
 	};
 
 	return (
@@ -87,7 +105,6 @@ function Subscribe() {
 					className={classes.field}
 					label='Confirmation mot de passe'
 				/>
-
 				<Button
 					variant='contained'
 					color='primary'
@@ -97,6 +114,16 @@ function Subscribe() {
 				>
 					Enregister
 				</Button>
+				<Button
+					variant='contained'
+					color='primary'
+					className={classes.button}
+					onClick={() => history.push('/')}
+					endIcon={<SaveIcon />}
+				>
+					Retour
+				</Button>
+				{verifField && <h6>Veuillez remplir tout les champs svp.</h6>}
 			</form>
 		</div>
 	);
