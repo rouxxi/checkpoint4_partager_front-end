@@ -75,9 +75,11 @@ function Buying() {
 													id: item.iditem,
 													creator: item.creator,
 													price: item.price,
+													description: item.description,
 													name: item.label,
 												},
 											],
+											totalPrice: basket.totalPrice + item.price,
 										});
 									}}
 								/>

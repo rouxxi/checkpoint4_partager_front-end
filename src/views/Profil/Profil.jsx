@@ -6,9 +6,11 @@ import { UserContext } from '../../contexts/userContext/userContext';
 import styleProfil from './styleProfil';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { BasketContext } from '../../contexts/BasketContext/BasketContext';
 
 function Profil() {
 	const { userInfo, setUserInfo } = React.useContext(UserContext);
+	const { basket, setBasket } = React.useContext(BasketContext);
 	const [firstName, setFirstName] = React.useState('');
 	const [lastName, setLastName] = React.useState('');
 	const [nickName, setNickName] = React.useState('');
@@ -37,6 +39,18 @@ function Profil() {
 	const handleLogout = () => {
 		localStorage.removeItem('token');
 		localStorage.removeItem('id');
+		setUserInfo({
+			idUser: '',
+			firstName: '',
+			lastName: '',
+			nickName: '',
+			email: '',
+			money: 0,
+		});
+		setBasket({
+			status: false,
+			items: [''],
+		});
 		history.push('/');
 	};
 	const handleSubmit = () => {
@@ -126,7 +140,7 @@ function Profil() {
 				className={classes.button}
 				onClick={handleLogout}
 			>
-				Deconnecxion
+				Deconnexion
 			</Button>
 		</div>
 	);

@@ -28,10 +28,10 @@ function NavBar() {
 		<div className={classes.main}>
 			<ul className={classes.Ul}>
 				<Link to='/buying'>
-					<li>Achat</li>{' '}
+					<li>Acheter</li>{' '}
 				</Link>
 				<Link to='/selling'>
-					<li>Vente</li>
+					<li>Vendre</li>
 				</Link>
 				<Link to='/orders'>
 					<li>Historique</li>

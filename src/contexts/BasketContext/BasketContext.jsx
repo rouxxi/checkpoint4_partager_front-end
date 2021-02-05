@@ -6,6 +6,7 @@ function BasketContextProvider({ children }) {
 	const [basket, setBasket] = React.useState({
 		status: false,
 		items: [''],
+		totalPrice: 0,
 	});
 
 	return (
