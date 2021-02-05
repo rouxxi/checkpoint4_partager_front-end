@@ -17,10 +17,10 @@ function Thumbnail(props) {
 			<CardActionArea>
 				<CardMedia
 					component='img'
-					alt='Contemplative Reptile'
+					alt={name}
 					height='140'
 					image={image}
-					title='Contemplative Reptile'
+					title={name}
 				/>
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='h2'>
