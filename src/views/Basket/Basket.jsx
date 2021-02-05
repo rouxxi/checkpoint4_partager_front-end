@@ -47,11 +47,9 @@ function Basket() {
 					.catch((error) => console.error(error));
 			});
 
-			axios
-				.put(`${process.env.REACT_APP_URL_BACK}users/${idUser}/bought/`, {
-					totalPrice: userInfo.money - (basket.totalPrice * 1.2).toFixed(2),
-				})
-				.then((res) => console.log(res));
+			axios.put(`${process.env.REACT_APP_URL_BACK}users/${idUser}/bought/`, {
+				totalPrice: userInfo.money - (basket.totalPrice * 1.2).toFixed(2),
+			});
 		}
 	};
 
@@ -81,7 +79,7 @@ function Basket() {
 												className={classes.delete}
 												onClick={(e) => {
 													setBasket({
-														status: false,
+														status: basket.status,
 														items: basket.items.filter(
 															(element) => element.id !== row.id
 														),
@@ -97,18 +95,26 @@ function Basket() {
 						<TableRow>
 							<TableCell rowSpan={3} />
 							<TableCell colSpan={1}>Subtotal</TableCell>
-							<TableCell align='left'>{basket.totalPrice}€</TableCell>
+							<TableCell align='left'>
+								{basket.totalPrice > 0 ? basket.totalPrice : 0}€
+							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Tax (20%)</TableCell>
 							<TableCell align='left'>
-								{(basket.totalPrice * 0.2).toFixed(2)}€
+								{basket.totalPrice > 0
+									? (basket.totalPrice * 0.2).toFixed(2)
+									: 0}
+								€
 							</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell colSpan={1}>Total</TableCell>
 							<TableCell align='left'>
-								{(basket.totalPrice * 1.2).toFixed(2)}€
+								{basket.totalPrice > 0
+									? (basket.totalPrice * 1.2).toFixed(2)
+									: 0}
+								€
 							</TableCell>
 						</TableRow>
 					</TableBody>

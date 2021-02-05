@@ -3,9 +3,10 @@ import InputBase from '@material-ui/core/InputBase';
 import styleFilters from './styleFilters';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FiltersPropTypes from '../../../PropTypes/FiltersPropTypes';
+
 function Filters(props) {
 	const { filterName, onChangeSearch, onChangeOrder, order } = props;
 	const classes = styleFilters();
@@ -37,5 +38,7 @@ function Filters(props) {
 		</div>
 	);
 }
+
+Filters.propTypes = FiltersPropTypes;
 
 export default Filters;

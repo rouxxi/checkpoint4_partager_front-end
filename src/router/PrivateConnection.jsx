@@ -14,7 +14,6 @@ function PrivateConnection(component, path) {
 			})
 			.then((res) => {
 				setAuthorization('');
-				console.log(res);
 			})
 			.catch((err) => setAuthorization(err));
 	}, []);

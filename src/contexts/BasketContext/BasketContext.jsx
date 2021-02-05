@@ -1,4 +1,5 @@
 import React, { createContext } from 'react';
+import ChildrenPropTypes from '../../PropTypes/ChildrenPropTypes';
 
 export const BasketContext = createContext(null);
 
@@ -15,5 +16,7 @@ function BasketContextProvider({ children }) {
 		</BasketContext.Provider>
 	);
 }
+
+BasketContextProvider.protoTypes = ChildrenPropTypes;
 
 export default BasketContextProvider;

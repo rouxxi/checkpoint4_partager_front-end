@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import stylethumbnail from './stylethumbnail';
+import ThumbnailPropTypes from '../../../PropTypes/ThumbnailPropTypes';
 
 function Thumbnail(props) {
 	const { image, price, name, description, onClick } = props;
@@ -41,5 +42,7 @@ function Thumbnail(props) {
 		</Card>
 	);
 }
+
+Thumbnail.propTypes = ThumbnailPropTypes;
 
 export default Thumbnail;

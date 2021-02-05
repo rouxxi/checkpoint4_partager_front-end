@@ -10,13 +10,12 @@ import axios from 'axios';
 import { UserContext } from '../../contexts/userContext/userContext';
 
 function Selling() {
-	const { userInfo, setUserInfo } = React.useContext(UserContext);
+	const { userInfo } = React.useContext(UserContext);
 	const [label, setLabel] = React.useState('');
 	const [description, setDescription] = React.useState('');
 	const [linkImage, setLinkImage] = React.useState('');
 	const [price, setPrice] = React.useState('');
-	const [user, setUser] = React.useState(1);
-	const [error, setError] = React.useState('');
+	const [, setError] = React.useState('');
 	const classes = styleSelling();
 
 	function handleChangeLabel(e) {
@@ -42,8 +41,6 @@ function Selling() {
 				user: idUser,
 			})
 			.then((res) => {
-				console.log(res);
-				console.log(process.env.REACT_APP_URL_BACK);
 				setError(res);
 			});
 	}

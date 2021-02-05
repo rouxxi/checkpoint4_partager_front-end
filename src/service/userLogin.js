@@ -4,7 +4,6 @@ const userLogin = (state, history, setUserInfo, userInfo) => {
     axios.post(`${process.env.REACT_APP_URL_BACK}users/login/`,
         state
     ).then((res) => {
-        console.log(res);
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('id', res.data.user.iduser);
         setUserInfo({...res.data.user,

@@ -10,7 +10,7 @@ import { BasketContext } from '../../contexts/BasketContext/BasketContext';
 
 function Profil() {
 	const { userInfo, setUserInfo } = React.useContext(UserContext);
-	const { basket, setBasket } = React.useContext(BasketContext);
+	const { setBasket } = React.useContext(BasketContext);
 	const [firstName, setFirstName] = React.useState('');
 	const [lastName, setLastName] = React.useState('');
 	const [nickName, setNickName] = React.useState('');
@@ -67,8 +67,6 @@ function Profil() {
 		axios
 			.put(`${process.env.REACT_APP_URL_BACK}users/${idUser}/profil/`, userInfo)
 			.then((res) => {
-				console.log(res);
-				console.log(userInfo);
 				setUserInfo({
 					...res.data.user,
 					firstName: res.data.user.firstName,
