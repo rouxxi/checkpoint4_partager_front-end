@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import styleBasket from './styleBasket';
 import { BasketContext } from '../../contexts/BasketContext/BasketContext';
@@ -31,15 +32,15 @@ function Basket() {
 						idItems: element.id,
 						idUser: userInfo.idUser,
 					})
-					.then((res) => setBought(true))
-					.catch((error) => console.error(error))
-					.then(() =>
+					.then((res) => {
+						setBought(true);
 						setBasket({
 							status: false,
 							items: [''],
 							totalPrice: 0,
-						})
-					);
+						});
+					})
+					.catch((error) => console.error(error));
 			});
 
 			axios
@@ -59,18 +60,33 @@ function Basket() {
 							<TableCell>Nom</TableCell>
 							<TableCell align='left'>Vendeur</TableCell>
 							<TableCell align='left'>Prix</TableCell>
+							<TableCell align='left'>Option</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{basket.items.map((row, index) => {
 							if (index > 0) {
 								return (
-									<TableRow key={row.label}>
+									<TableRow key={row.label} id={row.id}>
 										<TableCell component='th' scope='row'>
 											{row.name}
 										</TableCell>
 										<TableCell align='left'>{row.creator}</TableCell>
 										<TableCell align='left'>{row.price}</TableCell>
+										<TableCell align='left'>
+											<DeleteIcon
+												className={classes.delete}
+												onClick={(e) => {
+													setBasket({
+														status: false,
+														items: basket.items.filter(
+															(element) => element.id !== row.id
+														),
+														totalPrice: basket.totalPrice - row.price,
+													});
+												}}
+											/>
+										</TableCell>
 									</TableRow>
 								);
 							}
@@ -95,7 +111,10 @@ function Basket() {
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<button className={classes.button} onClick={handleSubmit}>
+			<button
+				className={basket.items.length > 1 ? classes.button : classes.buttonOff}
+				onClick={handleSubmit}
+			>
 				Acheter
 			</button>
 			{enoughtMoney && (
@@ -103,11 +122,7 @@ function Basket() {
 					Vous n'avez pas assez d'argent, pour acheter la totalité du panier!
 				</h6>
 			)}
-			{bought && (
-				<h6>
-					Vous n'avez pas assez d'argent, pour acheter la totalité du panier!
-				</h6>
-			)}
+			{bought && <h6>Vos achats ont bien été effectué !</h6>}
 		</div>
 	);
 }
