@@ -23,6 +23,8 @@ function Basket() {
 
 	const handleSubmit = () => {
 		const { idUser } = userInfo;
+		const buy = userInfo.money - basket.totalPrice;
+
 		if (userInfo.money < basket.totalPrice) {
 			setEnoughtMoney(true);
 		} else {
@@ -36,7 +38,7 @@ function Basket() {
 						setBought(true);
 						setUserInfo({
 							...userInfo,
-							money: userInfo.money - basket.totalPrice,
+							money: buy,
 						});
 						setBasket({
 							status: false,
