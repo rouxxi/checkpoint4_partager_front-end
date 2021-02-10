@@ -23,7 +23,7 @@ function Buying() {
 	useEffect(() => {
 		axios
 			.get(`${process.env.REACT_APP_URL_BACK}items/`, {
-				header: {
+				headers: {
 					Origin: 'https://partager.netlify.app/',
 				},
 			})

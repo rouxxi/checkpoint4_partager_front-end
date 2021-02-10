@@ -21,7 +21,7 @@ function Orders() {
 	useEffect(() => {
 		axios
 			.get(`${process.env.REACT_APP_URL_BACK}items/${idUser}/bought/`, {
-				header: {
+				headers: {
 					Origin: 'https://partager.netlify.app/',
 				},
 			})
