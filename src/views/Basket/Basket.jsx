@@ -30,10 +30,18 @@ function Basket() {
 		} else {
 			basket.items.forEach((element) => {
 				axios
-					.put(`${process.env.REACT_APP_URL_BACK}items/bought/`, {
-						idItems: element.id,
-						idUser: userInfo.idUser,
-					})
+					.put(
+						`${process.env.REACT_APP_URL_BACK}items/bought/`,
+						{
+							idItems: element.id,
+							idUser: userInfo.idUser,
+						},
+						{
+							header: {
+								Origin: 'https://partager.netlify.app/',
+							},
+						}
+					)
 					.then((res) => {
 						setBought(true);
 						setUserInfo({

@@ -21,9 +21,15 @@ function Buying() {
 	}
 
 	useEffect(() => {
-		axios.get(`${process.env.REACT_APP_URL_BACK}items/`).then((res) => {
-			setItems(res.data);
-		});
+		axios
+			.get(`${process.env.REACT_APP_URL_BACK}items/`, {
+				header: {
+					Origin: 'https://partager.netlify.app/',
+				},
+			})
+			.then((res) => {
+				setItems(res.data);
+			});
 	}, []);
 
 	return (

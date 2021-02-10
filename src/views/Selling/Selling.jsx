@@ -33,13 +33,21 @@ function Selling() {
 	function handleSubmit() {
 		const { idUser } = userInfo;
 		axios
-			.post(`${process.env.REACT_APP_URL_BACK}items/`, {
-				label: label,
-				price: price,
-				description: description,
-				linkImage: linkImage,
-				user: idUser,
-			})
+			.post(
+				`${process.env.REACT_APP_URL_BACK}items/`,
+				{
+					label: label,
+					price: price,
+					description: description,
+					linkImage: linkImage,
+					user: idUser,
+				},
+				{
+					header: {
+						Origin: 'https://partager.netlify.app/',
+					},
+				}
+			)
 			.then((res) => {
 				setError(res);
 			});
