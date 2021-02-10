@@ -20,7 +20,13 @@ function Orders() {
 
 	useEffect(() => {
 		axios
-			.get(`${process.env.REACT_APP_URL_BACK}items/${idUser}/bought/`)
+			.get(`${process.env.REACT_APP_URL_BACK}items/${idUser}/bought/`, {
+				{
+					header: {
+						Origin: "https://partager.netlify.app/",
+					}
+				}
+			})
 			.then((res) => setOrders(res.data));
 	}, [idUser]);
 

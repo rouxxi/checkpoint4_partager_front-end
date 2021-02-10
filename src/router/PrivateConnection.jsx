@@ -9,6 +9,7 @@ function PrivateConnection(component, path) {
 		axios
 			.get(`${process.env.REACT_APP_URL_BACK}users/`, {
 				headers: {
+					Origin: 'https://partager.netlify.app/',
 					Authorization: `Bearer ${localStorage.getItem('token')}`,
 				},
 			})

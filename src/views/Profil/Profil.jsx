@@ -65,7 +65,15 @@ function Profil() {
 		});
 
 		axios
-			.put(`${process.env.REACT_APP_URL_BACK}users/${idUser}/profil/`, userInfo)
+			.put(
+				`${process.env.REACT_APP_URL_BACK}users/${idUser}/profil/`,
+				userInfo,
+				{
+					header: {
+						Origin: 'https://partager.netlify.app/',
+					},
+				}
+			)
 			.then((res) => {
 				setUserInfo({
 					...res.data.user,
