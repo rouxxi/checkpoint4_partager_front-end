@@ -3,7 +3,7 @@ import axios from 'axios';
 const userLogin = (state, history, setUserInfo, userInfo) => {
     axios.post(`${process.env.REACT_APP_URL_BACK}users/login/`,
         state, {
-            header: {
+            headers: {
                 Origin: "https://partager.netlify.app/",
             }
         }

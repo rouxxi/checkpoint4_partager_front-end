@@ -43,7 +43,7 @@ function Selling() {
 					user: idUser,
 				},
 				{
-					header: {
+					headers: {
 						Origin: 'https://partager.netlify.app/',
 					},
 				}
