@@ -4,8 +4,7 @@ const userLogin = (state, history, setUserInfo, userInfo) => {
     axios.post(`${process.env.REACT_APP_URL_BACK}users/login/`,
         state, {
             header: {
-                'Access-Control-Allow-Origin': `https://partager.netlify.app/`,
-                'Content-Type': 'application/json',
+                'Origin': `https://partager.netlify.app/`,
             }
         }
     ).then((res) => {
