@@ -2,7 +2,12 @@ import axios from 'axios';
 
 const userLogin = (state, history, setUserInfo, userInfo) => {
     axios.post(`${process.env.REACT_APP_URL_BACK}users/login/`,
-        state
+        state, {
+            header: {
+                'Access-Control-Allow-Origin': `${process.env.REACT_APP_URL_BACK}`,
+                'Content-Type': 'application/json',
+            }
+        }
     ).then((res) => {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('id', res.data.user.iduser);
